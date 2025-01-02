@@ -5,7 +5,7 @@ This is a small example to demonstrate the use of a working hook in Xahau. The h
 
 **Please use new accounts to test this hook and test everything beforehand on Testnet just in case. I am not responsible for any losses. Create your own code if you are not sure.**
 
-## What does the hook forwarder do?
+## What does the Forwarder Hook do?
 
 The hook is installed on an account. Once installed, every time the account receives a payment through a Payment or URITokenBuy transaction type, it will be distributed among the accounts stored in the account namespace. If there are no accounts in the namespace, it will do nothing.
 
