@@ -18,7 +18,7 @@ The hook allows up to 10 addresses to which the amounts received can be distribu
 
 To check if you are doing it right, address: rBnGX5KRERL2vMtZU2hDpF4osbhvichmvn will be translated to 6E7FE292948037180F3646CC248FAF2BCACD59893C
 
-To add an account we must create an Invoke transaction from the hook account and add the following Hook parameters:
+To add an account we must create an Invoke transaction from the hook account and add the following Hook parameters and values:
 
 ADD with the AccountID
 NUM with the position we want between 00 to 09
@@ -57,9 +57,9 @@ We need to translate address account rLSYATPWj9UECGBEeVpxwEN16CuEREK3uR to Accou
 
 ## How to delete addresses?
 
-To delete you have to create an Invoke transaction from the hook account and use as parameter DEL and the position between 00 to 09. In case there is any address registered with that identifier, it will delete it.
+To delete you have to create an Invoke transaction from the hook account and use as parameter DEL and the position between 00 to 09 as value. In case there is any address registered with that identifier, it will delete it.
 
-DEL with the position we want to delete between 00 to 09
+DEL and the position we want to delete between 00 to 09
 
 Example:
 
@@ -67,7 +67,7 @@ DEL: 00
 
 We need to translate DEL keyword to hex. DEL = 44454C
 
-Numbers from 00 to 09 stay the same. No need to translate.
+Numbers from 00 to 09 stay the same. No need to translate them.
 
     const prepared = {
       TransactionType: "Invoke",
@@ -91,7 +91,7 @@ This hook or other installed hooks could change the expected result. So it is im
 
 ## How to install the Forwarder Hook on Testnet?
 
-This Hookhash only works for Testnet.
+This Hookhash only works for Testnet. The Hookhash is 319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1
 
 HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value in this website: https://richardah.github.io/xrpl-hookon-calculator/
 
