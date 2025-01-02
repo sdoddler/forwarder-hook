@@ -13,3 +13,27 @@ The hook allows up to 10 addresses to which the amounts received can be distribu
 - https://transia-rnd.github.io/xrpl-hex-visualizer
 
 To check if you are doing it right, address: rBnGX5KRERL2vMtZU2hDpF4osbhvichmvn will be translated to 6E7FE292948037180F3646CC248FAF2BCACD59893C
+
+To add an account we must create an Invoke transaction from the hook account and add the following Hook parameters:
+
+ADD with the AccountID
+NUM with the position we want between 00 to 09
+
+Example:
+
+ADD: 6E7FE2948037180F3646CC248FAF2BCACD59893C
+NUM: 00
+
+## How to delete addresses?
+
+To delete you have to create an Invoke transaction from the hook account and use as parameter DEL and the position between 00 to 09. In case there is any address registered with that identifier, it will delete it.
+
+DEL with the position we want to delete between 00 to 09
+
+Example:
+
+NUM: 01
+
+## Attention
+
+This hook or other installed hooks could change the expected result. So it is important to pre-test this and other hooks on Testnet before using it on Mainnet.
