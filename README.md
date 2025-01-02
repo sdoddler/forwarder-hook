@@ -25,12 +25,18 @@ NUM with the position we want between 00 to 09
 
 Example:
 
-ADD: 6E7FE2948037180F3646CC248FAF2BCACD59893C
+ADD: D53F733E54B866B9FBDB85762071832B03A56C76
 NUM: 00
 
-const prepared = {
+We need to change ADD and NUM keywords to hex. ADD = 414444 and NUM = 4E554D.
+We need to translate address account rLSYATPWj9UECGBEeVpxwEN16CuEREK3uR to AccountID D53F733E54B866B9FBDB85762071832B03A56C76
+
+414444: D53F733E54B866B9FBDB85762071832B03A56C76
+4E554D: 00
+
+    const prepared = {
       TransactionType: "Invoke",
-      Account: my_wallet.address,
+      Account: your_account_address,
       Flags: 0,
       HookParameters: [
         {
@@ -57,7 +63,27 @@ DEL with the position we want to delete between 00 to 09
 
 Example:
 
-DEL: 01
+DEL: 00
+
+We need to translate DEL keyword to hex. DEL = 44454C
+
+Numbers from 00 to 09 stay the same. No need to translate.
+
+    const prepared = {
+      TransactionType: "Invoke",
+      Account: your_account_address,
+      Flags: 0,
+      HookParameters: [
+        {
+          HookParameter: {
+            HookParameterName: "44454C",
+            HookParameterValue: "00",
+          }
+        },
+      ],
+      ...networkInfo.txValues,
+    };
+
 
 ## Attention
 
