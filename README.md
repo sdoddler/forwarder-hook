@@ -28,6 +28,27 @@ Example:
 ADD: 6E7FE2948037180F3646CC248FAF2BCACD59893C
 NUM: 00
 
+const prepared = {
+      TransactionType: "Invoke",
+      Account: my_wallet.address,
+      Flags: 0,
+      HookParameters: [
+        {
+          HookParameter: {
+            HookParameterName: "414444",
+            HookParameterValue: "D53F733E54B866B9FBDB85762071832B03A56C76",
+          },
+        },
+        {
+          HookParameter: {
+            HookParameterName: "4E554D",
+            HookParameterValue: "00",
+          },
+        },
+      ],
+      ...networkInfo.txValues,
+    };
+
 ## How to delete addresses?
 
 To delete you have to create an Invoke transaction from the hook account and use as parameter DEL and the position between 00 to 09. In case there is any address registered with that identifier, it will delete it.
