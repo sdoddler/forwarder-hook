@@ -17,7 +17,7 @@ This hook or other installed hooks could change the expected result. So it is im
 
 This Hookhash only works for Testnet. The Hookhash is 319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1
 
-HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value in this website: https://richardah.github.io/xrpl-hookon-calculator/
+HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value (FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE) in this website: https://richardah.github.io/xrpl-hookon-calculator/
 
     const prepared = {
       "TransactionType": "SetHook",
