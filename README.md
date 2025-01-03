@@ -111,7 +111,7 @@ HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can ver
       ...networkInfo.txValues,
     };
 
-## How to uninstall the Forwarder Hook on Testnet?
+## How to uninstall the Forwarder Hook on Mainnet/Testnet?
 
     const prepared = {
       "TransactionType": "SetHook",
@@ -128,3 +128,27 @@ HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can ver
     ],
       ...networkInfo.txValues,
     };
+
+## How to install the Forwarder Hook on Mainnet?
+
+Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF490A3992CADB3CD5CCE851FB358B2DE299ABE30DB9E.
+
+    const prepared = {
+      "TransactionType": "SetHook",
+      "Account": your_account_address,
+      "Flags": 0,
+      "Hooks": [
+        {
+          "Hook": {
+            "HookHash": "D22582E8BAF59FC682DEF490A3992CADB3CD5CCE851FB358B2DE299ABE30DB9E",
+            "HookNamespace": "0000000000000000000000000000000000000000000000000000000000000000",
+            "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
+          }
+        }
+      ],
+      ...networkInfo.txValues,
+    };
+
+## Last Thoughts
+
+Created by @[ekiserrepe](https://x.com/ekiserrepe). You can find more of my projects on [ekiserrepe.com](https://wwww.ekiserrepe.com)
