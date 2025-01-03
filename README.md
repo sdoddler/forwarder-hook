@@ -9,6 +9,50 @@ This is a small example to demonstrate the use of a working hook in Xahau. The h
 
 The hook is installed on an account. Once installed, every time the account receives a payment through a Payment or URITokenBuy transaction type, it will be distributed among the accounts stored in the account namespace. If there are no accounts in the namespace, it will do nothing.
 
+## Attention
+
+This hook or other installed hooks could change the expected result. So it is important to pre-test this and other hooks on Testnet before using it on Mainnet.
+
+## How to install the Forwarder Hook on Testnet?
+
+This Hookhash only works for Testnet. The Hookhash is 319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1
+
+HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value in this website: https://richardah.github.io/xrpl-hookon-calculator/
+
+    const prepared = {
+      "TransactionType": "SetHook",
+      "Account": your_account_address,
+      "Flags": 0,
+      "Hooks": [
+        {
+          "Hook": {
+            "HookHash": "319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1",
+            "HookNamespace": "0000000000000000000000000000000000000000000000000000000000000000",
+            "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
+          }
+        }
+      ],
+      ...networkInfo.txValues,
+    };
+
+## How to uninstall the Forwarder Hook on Mainnet/Testnet?
+
+    const prepared = {
+      "TransactionType": "SetHook",
+      "Account": your_account_address,
+      "Flags": 0,
+      Hooks:
+    [        
+        {                        
+            Hook: {
+                CreateCode: "",
+                Flags: 1,
+            }
+        }
+    ],
+      ...networkInfo.txValues,
+    };
+
 ## How to add addresses?
 
 The hook allows up to 10 addresses to which the amounts received can be distributed in equal parts. They will be registered with an identifier from 00 to 09. The addresses must be converted to Account ID. To do this you can use the following services:
@@ -95,50 +139,6 @@ Numbers from 00 to 09 stay the same. No need to translate them.
     };
 
 
-## Attention
-
-This hook or other installed hooks could change the expected result. So it is important to pre-test this and other hooks on Testnet before using it on Mainnet.
-
-## How to install the Forwarder Hook on Testnet?
-
-This Hookhash only works for Testnet. The Hookhash is 319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1
-
-HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value in this website: https://richardah.github.io/xrpl-hookon-calculator/
-
-    const prepared = {
-      "TransactionType": "SetHook",
-      "Account": your_account_address,
-      "Flags": 0,
-      "Hooks": [
-        {
-          "Hook": {
-            "HookHash": "319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1",
-            "HookNamespace": "0000000000000000000000000000000000000000000000000000000000000000",
-            "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
-          }
-        }
-      ],
-      ...networkInfo.txValues,
-    };
-
-## How to uninstall the Forwarder Hook on Mainnet/Testnet?
-
-    const prepared = {
-      "TransactionType": "SetHook",
-      "Account": your_account_address,
-      "Flags": 0,
-      Hooks:
-    [        
-        {                        
-            Hook: {
-                CreateCode: "",
-                Flags: 1,
-            }
-        }
-    ],
-      ...networkInfo.txValues,
-    };
-
 ## How to install the Forwarder Hook on Mainnet?
 
 Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF490A3992CADB3CD5CCE851FB358B2DE299ABE30DB9E.
@@ -158,6 +158,8 @@ Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF
       ],
       ...networkInfo.txValues,
     };
+
+
 
 ## Last Thoughts
 
