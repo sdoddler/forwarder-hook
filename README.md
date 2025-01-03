@@ -18,6 +18,16 @@ The hook allows up to 10 addresses to which the amounts received can be distribu
 
 To check if you are doing it right, address: rBnGX5KRERL2vMtZU2hDpF4osbhvichmvn will be translated to 6E7FE292948037180F3646CC248FAF2BCACD59893C
 
+Visual representation of the namespace or address book:
+
+|identifier|address|
+|-----------|-------|
+|01|address1 translated to AccountID|
+|02|address2 translated to AccountID|
+|03|address3 translated to AccountID|
+|..|..                              |
+|09|address9 translated to AccountID|
+
 To add an account we must create an Invoke transaction from the hook account and add the following Hook parameters and values:
 
 ADD with the AccountID
