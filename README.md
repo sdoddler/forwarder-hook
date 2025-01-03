@@ -15,7 +15,7 @@ This hook or other installed hooks could change the expected result. So it is im
 
 ## How to install the Forwarder Hook on Testnet?
 
-This Hookhash only works for Testnet. The Hookhash is 319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1
+This Hookhash only works for Testnet. The Hookhash is 1A9D1EEA98A9BE3C45A35872E51E36B6E73CBB7033A96CE0D98DB484215E0494
 
 HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value (FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE) in this website: https://richardah.github.io/xrpl-hookon-calculator/
 
@@ -26,7 +26,7 @@ HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can ver
       "Hooks": [
         {
           "Hook": {
-            "HookHash": "319E16820BAEF9A08C51F52C97338D4CF09E6E53991B4131820A079721C64EA1",
+            "HookHash": "1A9D1EEA98A9BE3C45A35872E51E36B6E73CBB7033A96CE0D98DB484215E0494",
             "HookNamespace": "0000000000000000000000000000000000000000000000000000000000000000",
             "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
           }
