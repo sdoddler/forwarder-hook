@@ -18,7 +18,7 @@ The hook allows up to 10 addresses to which the amounts received can be distribu
 
 To check if you are doing it right, address: rBnGX5KRERL2vMtZU2hDpF4osbhvichmvn will be translated to 6E7FE292948037180F3646CC248FAF2BCACD59893C
 
-Visual representation of the namespace or address book:
+**Visual representation of the namespace or address book:**
 
 |identifier|address|
 |-----------|-------|
@@ -33,13 +33,13 @@ To add an account we must create an Invoke transaction from the hook account and
 ADD with the AccountID
 NUM with the position we want between 00 to 09
 
-Example:
+**Example:**
 
 ADD: D53F733E54B866B9FBDB85762071832B03A56C76
 NUM: 00
 
 We need to change ADD and NUM keywords to hex. ADD = 414444 and NUM = 4E554D.
-We need to translate address account rLSYATPWj9UECGBEeVpxwEN16CuEREK3uR to AccountID D53F733E54B866B9FBDB85762071832B03A56C76
+Also, we need to translate address account rLSYATPWj9UECGBEeVpxwEN16CuEREK3uR to AccountID D53F733E54B866B9FBDB85762071832B03A56C76
 
 414444: D53F733E54B866B9FBDB85762071832B03A56C76
 4E554D: 00
@@ -71,7 +71,7 @@ To delete you have to create an Invoke transaction from the hook account and use
 
 DEL and the position we want to delete between 00 to 09
 
-Example:
+**Example:**
 
 DEL: 00
 
