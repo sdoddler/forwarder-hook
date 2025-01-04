@@ -167,4 +167,4 @@ Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF
 
 ## Last Thoughts
 
-Created by @[ekiserrepe](https://x.com/ekiserrepe). You can find more of my projects on [ekiserrepe.com](https://wwww.ekiserrepe.com)
+Created by @[ekiserrepe](https://x.com/ekiserrepe). You can find more of my projects on [ekiserrepe.com](https://www.ekiserrepe.com)
