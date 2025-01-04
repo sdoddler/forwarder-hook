@@ -83,14 +83,14 @@ NUM with the position we want between 00 to 09
 
 **Example:**
 
-ADD: D53F733E54B866B9FBDB85762071832B03A56C76
-NUM: 00
+- ADD: D53F733E54B866B9FBDB85762071832B03A56C76
+- NUM: 00
 
 We need to change ADD and NUM keywords to hex. ADD = 414444 and NUM = 4E554D.
 Also, we need to translate address account rLSYATPWj9UECGBEeVpxwEN16CuEREK3uR to AccountID D53F733E54B866B9FBDB85762071832B03A56C76
 
-414444: D53F733E54B866B9FBDB85762071832B03A56C76
-4E554D: 00
+- 414444: D53F733E54B866B9FBDB85762071832B03A56C76
+- 4E554D: 00
 
     const prepared = {
       TransactionType: "Invoke",
@@ -121,9 +121,11 @@ DEL and the position we want to delete between 00 to 09
 
 **Example:**
 
-DEL: 00
+- DEL: 00
 
-We need to translate DEL keyword to hex. DEL = 44454C
+We need to translate DEL keyword to hex. 
+
+- DEL = 44454C
 
 Numbers from 00 to 09 stay the same. No need to translate them.
 
