@@ -165,7 +165,9 @@ Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF
       ...networkInfo.txValues,
     };
 
+## Video Tutorial
 
+The user @[ainittomai](https://www.x.com/ainittomai) has created a video tutorial to learn how to use this hook on Xahau Testnet: [https://www.youtube.com/watch?v=rf8zSmrZkPA](https://www.youtube.com/watch?v=rf8zSmrZkPA)
 
 ## Last Thoughts
 
