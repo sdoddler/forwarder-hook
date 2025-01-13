@@ -21,6 +21,10 @@ A hook is identified by its HookHash, on the following examples I provide some H
 
 This Hookhash only works for Testnet. The Hookhash is 1A9D1EEA98A9BE3C45A35872E51E36B6E73CBB7033A96CE0D98DB484215E0494
 
+1. You can do it by [XRPLWin Hook Install Tool](https://xahau-testnet.xrplwin.com/tools/hook/from-hash)
+
+2. Or you can do it sending the transaction below:
+
 HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value (FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE) in this website: https://richardah.github.io/xrpl-hookon-calculator/
 
     const prepared = {
@@ -149,6 +153,11 @@ Numbers from 00 to 09 stay the same. No need to translate them.
 
 Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF490A3992CADB3CD5CCE851FB358B2DE299ABE30DB9E.
 
+1. You can do it by [XRPLWin Hook Install Tool](https://xahau.xrplwin.com/tools/hook/from-hash)
+
+2. Or you can do it sending the transaction below:
+
+```
     const prepared = {
       "TransactionType": "SetHook",
       "Account": your_account_address,
@@ -164,7 +173,7 @@ Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF
       ],
       ...networkInfo.txValues,
     };
-
+```
 ## Video Tutorial
 
 The user @[ainittomai](https://www.x.com/ainittomai) has created a video tutorial to learn how to use this hook on Xahau Testnet: [https://www.youtube.com/watch?v=rf8zSmrZkPA](https://www.youtube.com/watch?v=rf8zSmrZkPA)
