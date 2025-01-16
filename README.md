@@ -1,13 +1,26 @@
+# sDoddler's Remix
+
 <img width="575" alt="forwarderhook" src="https://github.com/user-attachments/assets/56a8e15e-388e-47a1-ab93-8b9fa0893764" />
 
-## Forwarder Hook for Xahau Network
-This is a small example to demonstrate the use of a working hook in Xahau. The hook is programmed in C. It is recommended for educational purposes only. The creator is not responsible for any problems it may cause.
+## Percentage based Forwarder Hook for Xahau Network
+This hook resends a percentage of the amount from a payment received or a URI buy to a specific destination. It also specifies a minimum amount of XAH received in drops.
 
+ It could easily be expanded to add other accounts & differing percentages. 
+ Be careful - if your percentages go over 1.0 then you will be spending **EXTRA** XAH
+
+ This is my first hook - exercise caution while using though it has been tested.
+
+ This hook was heavily inspired by the tutorial here:
+[SimplePayment](https://github.com/technotip/HookTutorials/blob/main/SimplePayment.c) &  [Ekiserrepe's Forwarder hook](https://github.com/Ekiserrepe/forwarder-hook)
+
+ This is being used in tandem with the Xah Elementals Game - more info can be found via:
+[TheShillverse on X](x.com/theshillverse)
+[Elementals on TheShillverse](theshillverse.com/elementals)
 **Please use new accounts to test this hook and test everything beforehand on Testnet just in case. I am not responsible for any losses. Create your own code if you are not sure.**
 
 ## What does the Forwarder Hook do?
 
-The hook is installed on an account. Once installed, every time the account receives a payment through a Payment or URITokenBuy transaction type, it will be distributed among the accounts stored in the account namespace. If there are no accounts in the namespace, it will do nothing.
+The hook is installed on an account. Once installed, every time the account receives a payment through a Payment or URITokenBuy transaction type, it will be distribute the set percentage to the account provided. 
 
 ## Attention
 
@@ -19,29 +32,32 @@ A hook is identified by its HookHash, on the following examples I provide some H
 
 ## How to install the Forwarder Hook on Testnet?
 
-This Hookhash only works for Testnet. The Hookhash is 1A9D1EEA98A9BE3C45A35872E51E36B6E73CBB7033A96CE0D98DB484215E0494
+Do not install this hook via it's Hook Hash - it needs to be recompiled so the account can be changed. Compiling is made easy via the [Hooks Builder](https://hooks-builder.xrpl.org/)
 
-1. You can do it by [XRPLWin Hook Install Tool](https://xahau-testnet.xrplwin.com/tools/hook/from-hash)
+Once compiled you can install it via:
+
+1. [XRPLWin Hook Install Tool](https://xahau-testnet.xrplwin.com/tools/hook/from-hash)
 
 2. Or you can do it sending the transaction below:
 
-HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can verify it copying the HookOn value (FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE) in this website: https://richardah.github.io/xrpl-hookon-calculator/
-
-    const prepared = {
-      "TransactionType": "SetHook",
-      "Account": your_account_address,
-      "Flags": 0,
-      "Hooks": [
-        {
-          "Hook": {
-            "HookHash": "1A9D1EEA98A9BE3C45A35872E51E36B6E73CBB7033A96CE0D98DB484215E0494",
-            "HookNamespace": "0000000000000000000000000000000000000000000000000000000000000000",
-            "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
-          }
-        }
-      ],
-      ...networkInfo.txValues,
-    };
+`{
+        
+    "Account": "rU3BHbWv4XknyNbDYnPtcv4XUiRUQ8pUst",
+        "TransactionType": "SetHook",
+        "Flags": 0,
+        "NetworkID":21338, // Testnet
+        "Hooks": [
+            {
+                "Hook": {
+                    "CreateCode": "0061736D01000000012C0760..... {COMPILED HEX CODE HERE}",
+                    "Flags": 1,
+                    "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
+                    "HookNamespace": "08BDF258525D0852D6BEE2849D8DACC2A08F1C74911C56EE97AE31CBE0FC75B8", // shillverseForwarder namespace
+                    "HookApiVersion": 0
+                }
+            }
+        ]
+    }`
 
 ## How to uninstall the Forwarder Hook on Mainnet/Testnet?
 
@@ -61,123 +77,19 @@ HookOn is activated to trigger for Invoke, Payment and URIToken_Buy. You can ver
       ...networkInfo.txValues,
     };
 
-## How to add addresses?
+## How to change addresses / percentages / minimum drops?
 
-The hook allows up to 10 addresses to which the amounts received can be distributed in equal parts. They will be registered with an identifier from 00 to 09. The addresses must be converted to Account ID. To do this you can use the following services:
+You can replace the master account variable at the top of the script - using the tools below to gather the correct data- 
 
 - https://hooks.services/tools/raddress-to-accountid 
 - https://transia-rnd.github.io/xrpl-hex-visualizer
 
-To check if you are doing it right, address: rBnGX5KRERL2vMtZU2hDpF4osbhvichmvn will be translated to 6E7FE292948037180F3646CC248FAF2BCACD59893C
+Verification Example:
+rPNKEiCGzPd53MhqjkQJrtJKLLVWi6bav1 becomes
+{ 0xF3U, 0xD7U, 0x6AU, 0x09U, 0x64U, 0x7CU, 0x81U, 0x3DU, 0x03U, 0x63U, 0xE6U, 0xF8U, 0x20U, 0xBBU, 0x7CU, 0x79U, 0x7DU, 0x2EU, 0xB7U, 0x04U }
 
-**Visual representation of the namespace or address book:**
-
-|identifier|address|
-|-----------|-------|
-|01|address1 translated to AccountID|
-|02|address2 translated to AccountID|
-|03|address3 translated to AccountID|
-|..|..                              |
-|09|address9 translated to AccountID|
-
-To add an account we must create an Invoke transaction from the hook account and add the following Hook parameters and values:
-
-ADD with the AccountID
-NUM with the position we want between 00 to 09
-
-**Example:**
-
-- ADD: D53F733E54B866B9FBDB85762071832B03A56C76
-- NUM: 00
-
-We need to change ADD and NUM keywords to hex. ADD = 414444 and NUM = 4E554D.
-Also, we need to translate address account rLSYATPWj9UECGBEeVpxwEN16CuEREK3uR to AccountID D53F733E54B866B9FBDB85762071832B03A56C76
-
-- 414444: D53F733E54B866B9FBDB85762071832B03A56C76
-- 4E554D: 00
-
-    const prepared = {
-      TransactionType: "Invoke",
-      Account: your_account_address,
-      Flags: 0,
-      HookParameters: [
-        {
-          HookParameter: {
-            HookParameterName: "414444",
-            HookParameterValue: "D53F733E54B866B9FBDB85762071832B03A56C76",
-          },
-        },
-        {
-          HookParameter: {
-            HookParameterName: "4E554D",
-            HookParameterValue: "00",
-          },
-        },
-      ],
-      ...networkInfo.txValues,
-    };
-
-## How to delete addresses?
-
-To delete you have to create an Invoke transaction from the hook account and use as parameter DEL and the position between 00 to 09 as value. In case there is any address registered with that identifier, it will delete it.
-
-DEL and the position we want to delete between 00 to 09
-
-**Example:**
-
-- DEL: 00
-
-We need to translate DEL keyword to hex. 
-
-- DEL = 44454C
-
-Numbers from 00 to 09 stay the same. No need to translate them.
-
-    const prepared = {
-      TransactionType: "Invoke",
-      Account: your_account_address,
-      Flags: 0,
-      HookParameters: [
-        {
-          HookParameter: {
-            HookParameterName: "44454C",
-            HookParameterValue: "00",
-          }
-        },
-      ],
-      ...networkInfo.txValues,
-    };
-
-
-## How to install the Forwarder Hook on Mainnet?
-
-Same as Testnet but changing the hookhash. The Hookhash is D22582E8BAF59FC682DEF490A3992CADB3CD5CCE851FB358B2DE299ABE30DB9E.
-
-1. You can do it by [XRPLWin Hook Install Tool](https://xahau.xrplwin.com/tools/hook/from-hash)
-
-2. Or you can do it sending the transaction below:
-
-```
-    const prepared = {
-      "TransactionType": "SetHook",
-      "Account": your_account_address,
-      "Flags": 0,
-      "Hooks": [
-        {
-          "Hook": {
-            "HookHash": "D22582E8BAF59FC682DEF490A3992CADB3CD5CCE851FB358B2DE299ABE30DB9E",
-            "HookNamespace": "0000000000000000000000000000000000000000000000000000000000000000",
-            "HookOn": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFF7FFFFFBFFFFE",
-          }
-        }
-      ],
-      ...networkInfo.txValues,
-    };
-```
-## Video Tutorial
-
-The user @[ainittomai](https://www.x.com/ainittomai) has created a video tutorial to learn how to use this hook on Xahau Testnet: [https://www.youtube.com/watch?v=rf8zSmrZkPA](https://www.youtube.com/watch?v=rf8zSmrZkPA)
+Changing percentages and minimum drops is as easy as changing the variables `percentage01` `minimum_drops`
 
 ## Last Thoughts
-
-Created by @[ekiserrepe](https://x.com/ekiserrepe). You can find more of my projects on [ekiserrepe.com](https://www.ekiserrepe.com)
+Created by @[TheShillverse](https://x.com/theShillverse) you can find out more about The Shillverse @ [TheShillverse.com](https://theshillverse.com)
+Credit to @[ekiserrepe](https://x.com/ekiserrepe). You can find more of his projects on [ekiserrepe.com](https://www.ekiserrepe.com)
